@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
   llenarCategorias();
   cargarRegiones("region");
+  conectarTelefonoFijo("telefono");
+  conectarFuerzaClave("clave", "fuerzaClaveBarra", "fuerzaClaveTexto");
 
   const reglas = {
     rut: validarRut,
@@ -39,16 +41,6 @@ function llenarCategorias() {
     opcion.textContent = cat.nombre;
     select.appendChild(opcion);
   });
-}
-
-function validarDias(valor) {
-  if (valor.trim() === "") { return "Ingrese los dias de entrega."; }
-
-  const dias = Number(valor);
-  if (!Number.isInteger(dias)) { return "Debe ser un numero entero."; }
-  if (dias < 1 || dias > 60) { return "Debe estar entre 1 y 60 dias."; }
-
-  return "";
 }
 
 function cuentasCreadas() {
