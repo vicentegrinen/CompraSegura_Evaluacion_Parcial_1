@@ -1,10 +1,38 @@
 const cuentas = [
-  { correo: "comprador@duoc.cl", clave: "1234", nombre: "Carlos Rojas", perfil: "comprador", inicio: "index.html" },
+  { correo: "comprador@duoc.cl", clave: "1234", nombre: "Carlos Rojas", perfil: "comprador", inicio: "catalogo.html" },
   { correo: "analista@duoc.cl", clave: "1234", nombre: "Paula Vera", perfil: "analista", inicio: "analista.html" },
   { correo: "admin@duoc.cl", clave: "1234", nombre: "Luis Fuentes", perfil: "administrador", inicio: "administrador.html" },
   { correo: "ferreteria@gmail.com", clave: "1234", nombre: "Ferreteria Nacional", perfil: "proveedor", rut: "705678901", inicio: "proveedor.html" },
   { correo: "maderas@gmail.com", clave: "1234", nombre: "Maderas del Sur", perfil: "proveedor", rut: "761234560", inicio: "proveedor.html" }
 ];
+
+function buscarCuenta(correo, clave) {
+  const fija = cuentas.find(function (c) {
+    return c.correo === correo && c.clave === clave;
+  });
+
+  if (fija) { return fija; }
+
+  const dato = localStorage.getItem("cuentasNuevas");
+  const nuevas = dato ? JSON.parse(dato) : [];
+
+  const nueva = nuevas.find(function (c) {
+    return c.correo === correo && c.clave === clave;
+  });
+
+  if (!nueva) { return null; }
+
+  if (nueva.estado === "Pendiente") { return "pendiente"; }
+
+  const destinos = {
+    proveedor: "proveedor.html",
+    analista: "analista.html",
+    administrador: "administrador.html"
+  };
+
+  nueva.inicio = destinos[nueva.perfil];
+  return nueva;
+}
 
 function entrar(cuenta) {
   localStorage.setItem("sesion", JSON.stringify(cuenta));

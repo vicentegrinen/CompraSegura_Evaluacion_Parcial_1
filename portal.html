@@ -24,11 +24,11 @@
 
       <nav>
         <ul class="menu" id="menu">
-            <li><a href="index.html">Catalogo</a></li>
+            <li><a href="catalogo.html">Catalogo</a></li>
             <li><a href="carrito.html">Carrito (<span id="contadorCarrito">0</span>)</a></li>
             <li><a href="portal.html" class="activo">Nuestra empresa</a></li>
             <li><span class="conectado" id="usuarioConectado"></span></li>
-            <li><a href="login.html" class="destacado" id="enlaceSesion">Ingresar</a></li>
+            <li><a href="#" class="destacado" id="enlaceSesion">Ingresar</a></li>
         </ul>
       </nav>
 
@@ -52,7 +52,7 @@
             Registre su empresa para postular como proveedor. Su solicitud
             queda pendiente hasta que el administrador la revise.
           </p>
-          <a href="registro.html" class="boton naranja">Crear registro de proveedor</a>
+          <a href="#" class="boton naranja" id="botonCrearRegistro">Crear registro de proveedor</a>
         </article>
 
         <article class="acceso">
@@ -61,9 +61,188 @@
             Ingrese con su correo y contrasena. El sistema lo lleva a su
             vista segun sea proveedor, analista o administrador.
           </p>
-          <a href="login.html" class="boton">Iniciar sesion</a>
+          <a href="#" class="boton" id="botonIniciarSesion">Iniciar sesion</a>
         </article>
 
+      </section>
+
+      <div class="modal-fondo" id="modalLogin" hidden>
+        <section class="caja modal-caja">
+          <button type="button" class="modal-cerrar" id="modalLoginCerrar" aria-label="Cerrar">&times;</button>
+          <div class="titulo">Ingresar al sistema</div>
+          <div class="cuerpo">
+
+            <div class="aviso malo" id="modalLoginAviso"></div>
+
+            <form id="modalLoginFormulario" novalidate>
+
+              <div class="campo">
+                <label for="modalLoginCorreo">Correo</label>
+                <input type="email" id="modalLoginCorreo" maxlength="100" autocomplete="email">
+                <small class="pista">Solo @duoc.cl, @profesor.duoc.cl o @gmail.com</small>
+                <small class="error"></small>
+              </div>
+
+              <div class="campo">
+                <label for="modalLoginClave">Contrasena</label>
+                <input type="password" id="modalLoginClave" maxlength="10" autocomplete="current-password">
+                <small class="pista">Entre 4 y 10 caracteres.</small>
+                <small class="error"></small>
+              </div>
+
+              <button type="submit" class="boton ancho" id="modalLoginBotonIngresar" disabled>Ingresar</button>
+            </form>
+
+          </div>
+        </section>
+      </div>
+
+      <div class="modal-fondo" id="modalRegistro" hidden>
+        <section class="caja modal-caja ancha">
+          <button type="button" class="modal-cerrar" id="modalRegistroCerrar" aria-label="Cerrar">&times;</button>
+          <div class="titulo">Registro de proveedor</div>
+          <div class="cuerpo">
+
+            <div class="aviso" id="regAviso"></div>
+
+            <form id="regFormulario" novalidate>
+
+              <p class="ayuda" style="margin-bottom: 18px;">
+                Este formulario es para empresas que quieren ser proveedoras de
+                CompraSegura. La cuenta queda pendiente hasta que el
+                administrador la apruebe.
+              </p>
+
+              <div class="dos-columnas">
+
+                <div class="campo">
+                  <label for="regRut">RUT</label>
+                  <input type="text" id="regRut" maxlength="9" autocomplete="off">
+                  <small class="pista">Sin puntos ni guion. Ejemplo: 761234560</small>
+                  <small class="error"></small>
+                </div>
+
+                <div class="campo">
+                  <label for="regNombre">Nombre o razon social</label>
+                  <input type="text" id="regNombre" maxlength="100" autocomplete="organization">
+                  <small class="pista">Letras, numeros y puntos.</small>
+                  <small class="error"></small>
+                </div>
+
+                <div class="campo">
+                  <label for="regCorreo">Correo</label>
+                  <input type="email" id="regCorreo" maxlength="100" list="regDominios" autocomplete="email">
+                  <small class="pista">Solo @duoc.cl, @profesor.duoc.cl o @gmail.com</small>
+                  <small class="error"></small>
+                </div>
+
+                <div class="campo">
+                  <label for="regTelefono">Telefono</label>
+                  <input type="tel" id="regTelefono" inputmode="tel" maxlength="13" autocomplete="tel-national" value="+56 ">
+                  <small class="pista">Escriba los 9 digitos despues del +56. Ejemplo: +56 912345678</small>
+                  <small class="error"></small>
+                </div>
+
+                <div class="campo" id="regCampoCategoria">
+                  <label for="regCategoria">Categoria que provee</label>
+                  <select id="regCategoria">
+                    <option value="">Seleccione una categoria</option>
+                  </select>
+                  <small class="pista">Rubro principal de la empresa.</small>
+                  <small class="error"></small>
+                </div>
+
+                <div class="campo" id="regCampoDias">
+                  <label for="regDias">Dias de entrega</label>
+                  <input type="number" id="regDias" min="1" max="60">
+                  <small class="pista">Plazo habitual, entre 1 y 60 dias.</small>
+                  <small class="error"></small>
+                </div>
+
+                <div class="campo">
+                  <label for="regRegion">Region</label>
+                  <select id="regRegion">
+                    <option value="">Seleccione una region</option>
+                  </select>
+                  <small class="pista">Al elegir region se cargan sus comunas.</small>
+                  <small class="error"></small>
+                </div>
+
+                <div class="campo">
+                  <label for="regComuna">Comuna</label>
+                  <select id="regComuna">
+                    <option value="">Seleccione una comuna</option>
+                  </select>
+                  <small class="pista">Depende de la region elegida.</small>
+                  <small class="error"></small>
+                </div>
+
+                <div class="campo completo">
+                  <label for="regDireccion">Direccion</label>
+                  <input type="text" id="regDireccion" maxlength="300" autocomplete="street-address">
+                  <small class="pista">Calle y numero.</small>
+                  <small class="error"></small>
+                </div>
+
+                <div class="campo">
+                  <label for="regClave">Contrasena</label>
+                  <input type="password" id="regClave" maxlength="10" autocomplete="new-password">
+                  <div class="fuerza-clave"><div class="fuerza-clave-barra" id="regFuerzaClaveBarra"></div></div>
+                  <small class="fuerza-texto" id="regFuerzaClaveTexto"></small>
+                  <small class="pista">Entre 8 y 10 caracteres, con mayuscula, minuscula y numero.</small>
+                  <small class="error"></small>
+                </div>
+
+                <div class="campo">
+                  <label for="regRepetirClave">Repetir contrasena</label>
+                  <input type="password" id="regRepetirClave" maxlength="10" autocomplete="new-password" data-comparar="regClave">
+                  <small class="pista">Debe ser igual a la anterior.</small>
+                  <small class="error"></small>
+                </div>
+
+              </div>
+
+              <button type="submit" class="boton ancho" id="regBotonRegistrar" disabled>
+                Enviar solicitud de registro
+              </button>
+            </form>
+
+          </div>
+        </section>
+      </div>
+
+      <datalist id="regDominios">
+        <option value="@duoc.cl"></option>
+        <option value="@profesor.duoc.cl"></option>
+        <option value="@gmail.com"></option>
+      </datalist>
+
+      <section>
+        <h2>Que puede hacer cada perfil</h2>
+        <div class="tabla-caja">
+          <table>
+            <thead>
+              <tr>
+                <th>Perfil</th>
+                <th>Que ve al entrar</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Proveedor</strong></td>
+                <td>Sus solicitudes de compra, el stock que tiene de cada producto y el avance de cada entrega.</td>
+              </tr>
+              <tr>
+                <td><strong>Analista</strong></td>
+                <td>El resumen con la nota de cada proveedor y el detalle entrega por entrega.</td>
+              </tr>
+              <tr>
+                <td><strong>Administrador</strong></td>
+                <td>Reportes de compras, gasto por categoria, presupuesto y las decisiones sobre cada proveedor.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </section>
 
     </div>
@@ -77,8 +256,8 @@
           <h3>Nuestra empresa</h3>
           <ul>
             <li><a href="portal.html">Portal de gestion de proveedores</a></li>
-            <li><a href="registro.html">Quiero ser proveedor</a></li>
-            <li><a href="login.html">Ingresar al sistema</a></li>
+            <li><a href="registro.html" id="enlaceRegistroPie">Quiero ser proveedor</a></li>
+            <li><a href="login.html" id="enlaceLoginPie">Ingresar al sistema</a></li>
           </ul>
         </div>
         <div>
@@ -92,7 +271,7 @@
       </div>
 
       <div class="pie-abajo">
-        
+        CompraSegura 2026 - Proyecto academico Duoc UC
       </div>
 
     </div>
@@ -101,6 +280,10 @@
   <script src="js/datos.js"></script>
   <script src="js/carrito-datos.js"></script>
   <script src="js/sesion.js"></script>
+  <script src="js/regiones.js"></script>
+  <script src="js/validaciones.js"></script>
+  <script src="js/modal-login.js"></script>
+  <script src="js/modal-registro.js"></script>
 
 </body>
 

@@ -71,16 +71,26 @@ function validarCorreo(valor) {
 }
 
 function validarTelefono(valor) {
-  const telefono = valor.trim();
+  const digitos = valor.trim().replace(/^\+?56\s*/, "").replace(/[^0-9]/g, "");
 
-  if (telefono === "") { return "Ingrese un telefono."; }
-  if (!/^9[0-9]{8}$/.test(telefono)) { return "Deben ser 9 digitos empezando en 9."; }
+  if (digitos === "") { return "Ingrese un telefono."; }
+  if (!/^9[0-9]{8}$/.test(digitos)) { return "Deben ser 9 digitos empezando en 9."; }
 
   return "";
 }
 
 function validarSeleccion(valor) {
   if (valor === "") { return "Seleccione una opcion."; }
+  return "";
+}
+
+function validarDias(valor) {
+  if (valor.trim() === "") { return "Ingrese los dias de entrega."; }
+
+  const dias = Number(valor);
+  if (!Number.isInteger(dias)) { return "Debe ser un numero entero."; }
+  if (dias < 1 || dias > 60) { return "Debe estar entre 1 y 60 dias."; }
+
   return "";
 }
 
@@ -96,6 +106,9 @@ function validarDireccion(valor) {
 function validarClaveNueva(valor) {
   if (valor === "") { return "Ingrese una contrasena."; }
   if (valor.length < 8 || valor.length > 10) { return "Debe tener entre 8 y 10 caracteres."; }
+  if (!/[A-Z]/.test(valor)) { return "Debe incluir al menos una mayuscula."; }
+  if (!/[a-z]/.test(valor)) { return "Debe incluir al menos una minuscula."; }
+  if (!/[0-9]/.test(valor)) { return "Debe incluir al menos un numero."; }
 
   return "";
 }
@@ -107,13 +120,84 @@ function validarClaveIngreso(valor) {
   return "";
 }
 
-function validarRepetirClave(valor) {
-  const original = document.getElementById("clave").value;
+function validarRepetirClave(valor, entrada) {
+  const idClave = (entrada && entrada.dataset && entrada.dataset.comparar) ? entrada.dataset.comparar : "clave";
+  const campoClave = document.getElementById(idClave);
+  const original = campoClave ? campoClave.value : "";
 
   if (valor === "") { return "Repita la contrasena."; }
   if (valor !== original) { return "Las contrasenas no coinciden."; }
 
   return "";
+}
+
+function conectarTelefonoFijo(idInput) {
+  const PREFIJO = "+56 ";
+  const entrada = document.getElementById(idInput);
+  if (!entrada) { return; }
+
+  function normalizar() {
+    const valor = entrada.value;
+
+    if (!valor.startsWith(PREFIJO)) {
+      let digitos = valor.replace(/[^0-9]/g, "");
+      if (digitos.startsWith("56")) { digitos = digitos.slice(2); }
+      entrada.value = PREFIJO + digitos.slice(0, 9);
+      return;
+    }
+
+    const resto = valor.slice(PREFIJO.length).replace(/[^0-9]/g, "").slice(0, 9);
+    entrada.value = PREFIJO + resto;
+  }
+
+  if (entrada.value.trim() === "") { entrada.value = PREFIJO; }
+
+  entrada.addEventListener("focus", function () {
+    if (entrada.value === "") { entrada.value = PREFIJO; }
+    const pos = entrada.value.length;
+    setTimeout(function () { entrada.setSelectionRange(pos, pos); }, 0);
+  });
+
+  entrada.addEventListener("keydown", function (evento) {
+    if (evento.key === "Backspace" && entrada.selectionStart <= PREFIJO.length && entrada.selectionEnd <= PREFIJO.length) {
+      evento.preventDefault();
+    }
+  });
+
+  entrada.addEventListener("input", normalizar);
+}
+
+function calcularFuerzaClave(valor) {
+  if (valor === "") { return { nivel: "", texto: "", porcentaje: 0 }; }
+
+  let puntos = 0;
+  if (valor.length >= 8) { puntos++; }
+  if (/[A-Z]/.test(valor)) { puntos++; }
+  if (/[a-z]/.test(valor)) { puntos++; }
+  if (/[0-9]/.test(valor)) { puntos++; }
+  if (/[^A-Za-z0-9]/.test(valor)) { puntos++; }
+
+  if (puntos <= 2) { return { nivel: "debil", texto: "Contrasena debil", porcentaje: 33 }; }
+  if (puntos <= 3) { return { nivel: "media", texto: "Contrasena media", porcentaje: 66 }; }
+  return { nivel: "fuerte", texto: "Contrasena fuerte", porcentaje: 100 };
+}
+
+function conectarFuerzaClave(idClave, idBarra, idTexto) {
+  const clave = document.getElementById(idClave);
+  const barra = document.getElementById(idBarra);
+  const texto = document.getElementById(idTexto);
+  if (!clave || !barra || !texto) { return; }
+
+  function actualizar() {
+    const resultado = calcularFuerzaClave(clave.value);
+    barra.className = "fuerza-clave-barra" + (resultado.nivel ? " " + resultado.nivel : "");
+    barra.style.width = resultado.porcentaje + "%";
+    texto.className = "fuerza-texto" + (resultado.nivel ? " " + resultado.nivel : "");
+    texto.textContent = resultado.texto;
+  }
+
+  clave.addEventListener("input", actualizar);
+  actualizar();
 }
 
 function pintar(id, mensaje) {
@@ -148,7 +232,7 @@ function conectar(idFormulario, reglas, idBoton) {
 
       if (entrada.closest(".campo").style.display === "none") { continue; }
 
-      const mensaje = reglas[id](entrada.value);
+      const mensaje = reglas[id](entrada.value, entrada);
       if (mostrando) { pintar(id, mensaje); }
       if (mensaje !== "") { todoBien = false; }
     }
@@ -162,7 +246,7 @@ function conectar(idFormulario, reglas, idBoton) {
 
     ["input", "change"].forEach(function (evento) {
       entrada.addEventListener(evento, function () {
-        pintar(id, reglas[id](entrada.value));
+        pintar(id, reglas[id](entrada.value, entrada));
         revisar(false);
       });
     });

@@ -25,7 +25,8 @@ La parte publica es el catalogo. El portal interno se entra por el enlace
 
 | Archivo | Quien la usa | Que hace |
 |---|---|---|
-| `index.html` | Comprador | Catalogo con filtro por categoria y video institucional |
+| `index.html` | Publico | Pagina de inicio: accesos rapidos, categorias y video institucional |
+| `catalogo.html` | Comprador | Catalogo con filtro por categoria |
 | `carrito.html` | Comprador | Pedido con subtotales, envio, total y boleta al pagar |
 | `portal.html` | Publico | Entrada del portal: crear registro o iniciar sesion |
 | `registro.html` | Proveedor | Postular como proveedor. La cuenta queda pendiente |
@@ -53,7 +54,8 @@ por ejemplo "Paula Vera - Analista".
 
 ```
 comprasegura/
-  index.html            Catalogo
+  index.html            Pagina de inicio
+  catalogo.html         Catalogo
   carrito.html          Carrito y boleta
   portal.html           Entrada del portal de proveedores
   registro.html         Postulacion de proveedor
@@ -184,7 +186,7 @@ documento no fija una regla para ese formulario.
 
 ## Como probar el sitio
 
-1. Abrir `index.html`, filtrar por categoria y agregar productos al carrito.
+1. Abrir `catalogo.html`, filtrar por categoria y agregar productos al carrito.
 2. Ir al carrito, cambiar cantidades, elegir la direccion y pagar. La boleta
    muestra el numero de solicitud que le llego a cada proveedor.
 3. Bajar al pie de pagina, entrar por "Nuestra empresa" y crear un registro

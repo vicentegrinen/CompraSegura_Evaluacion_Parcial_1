@@ -12,34 +12,6 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-function buscarCuenta(correo, clave) {
-  const fija = cuentas.find(function (c) {
-    return c.correo === correo && c.clave === clave;
-  });
-
-  if (fija) { return fija; }
-
-  const dato = localStorage.getItem("cuentasNuevas");
-  const nuevas = dato ? JSON.parse(dato) : [];
-
-  const nueva = nuevas.find(function (c) {
-    return c.correo === correo && c.clave === clave;
-  });
-
-  if (!nueva) { return null; }
-
-  if (nueva.estado === "Pendiente") { return "pendiente"; }
-
-  const destinos = {
-    proveedor: "proveedor.html",
-    analista: "analista.html",
-    administrador: "administrador.html"
-  };
-
-  nueva.inicio = destinos[nueva.perfil];
-  return nueva;
-}
-
 function ingresar(formulario) {
   const aviso = document.getElementById("aviso");
   aviso.classList.remove("visible");
