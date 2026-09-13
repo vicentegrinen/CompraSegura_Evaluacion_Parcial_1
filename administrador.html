@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CompraSegura - Administrador</title>
+
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+  <header class="cabecera">
+    <div class="contenedor">
+
+      <a href="index.html" class="logo">
+        <img src="img/logo.png" alt="Logo de CompraSegura">
+        <span class="marca">Compra<span>Segura</span></span>
+      </a>
+
+      <button class="boton-menu" id="botonMenu">Menu</button>
+
+      <nav>
+        <ul class="menu" id="menu">
+            <li><a href="index.html">Catalogo</a></li>
+            <li><a href="carrito.html">Carrito (<span id="contadorCarrito">0</span>)</a></li>
+            <li><a href="portal.html">Nuestra empresa</a></li>
+            <li><span class="conectado" id="usuarioConectado"></span></li>
+            <li><a href="login.html" class="destacado" id="enlaceSesion">Ingresar</a></li>
+        </ul>
+      </nav>
+
+    </div>
+  </header>
+
+  <main>
+    <div class="contenedor">
+
+      <h1>Reportes y decisiones</h1>
+      <p class="bajada">
+        Los reportes se calculan solos con las solicitudes registradas.
+      </p>
+
+      <div class="aviso" id="aviso"></div>
+
+      <div class="cifras" id="cifras"></div>
+
+      <section>
+        <h2>Cumplimiento del presupuesto</h2>
+        <div id="presupuesto"></div>
+      </section>
+
+      <section>
+        <h2>Gasto por categoria</h2>
+        <div id="gastos"></div>
+      </section>
+
+      <section>
+        <h2>Desempeno de proveedores</h2>
+        <div id="fichas"></div>
+      </section>
+
+      <section>
+        <h2>Decisiones</h2>
+        <p class="ayuda" style="margin-bottom: 12px;">
+          Suspender deja al proveedor fuera del catalogo sin borrarlo.
+          Eliminar lo saca del sistema.
+        </p>
+        <div class="tabla-caja">
+          <table>
+            <thead>
+              <tr>
+                <th>Proveedor</th>
+                <th>Nota</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="cuerpoDecisiones"></tbody>
+          </table>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="pie">
+    <div class="contenedor">
+
+      <div class="pie-columnas">
+        <div>
+          <h3>Nuestra empresa</h3>
+          <ul>
+            <li><a href="portal.html">Portal de gestion de proveedores</a></li>
+            <li><a href="registro.html">Quiero ser proveedor</a></li>
+            <li><a href="login.html">Ingresar al sistema</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Contacto</h3>
+          <ul>
+            <li>Casa matriz: Santiago Centro</li>
+            <li>proveedores@comprasegura.cl</li>
+            <li>+56 2 2345 6789</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pie-abajo">
+        CompraSegura 2026 - Proyecto academico Duoc UC
+      </div>
+
+    </div>
+  </footer>
+
+  <script src="js/datos.js"></script>
+  <script src="js/solicitudes.js"></script>
+  <script src="js/carrito-datos.js"></script>
+  <script src="js/sesion.js"></script>
+  <script src="js/evaluacion.js"></script>
+  <script src="js/administrador.js"></script>
+
+</body>
+
+</html>

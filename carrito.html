@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CompraSegura - Carrito</title>
+
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+  <header class="cabecera">
+    <div class="contenedor">
+
+      <a href="index.html" class="logo">
+        <img src="img/logo.png" alt="Logo de CompraSegura">
+        <span class="marca">Compra<span>Segura</span></span>
+      </a>
+
+      <button class="boton-menu" id="botonMenu">Menu</button>
+
+      <nav>
+        <ul class="menu" id="menu">
+            <li><a href="index.html">Catalogo</a></li>
+            <li><a href="carrito.html" class="activo">Carrito (<span id="contadorCarrito">0</span>)</a></li>
+            <li><a href="portal.html">Nuestra empresa</a></li>
+            <li><span class="conectado" id="usuarioConectado"></span></li>
+            <li><a href="login.html" class="destacado" id="enlaceSesion">Ingresar</a></li>
+        </ul>
+      </nav>
+
+    </div>
+  </header>
+
+  <main>
+    <div class="contenedor">
+
+      <h1>Carrito de compras</h1>
+      <p class="bajada">Revise su pedido antes de pagar.</p>
+
+      <div class="aviso" id="aviso"></div>
+
+      <section id="zonaCarrito">
+        <div class="tabla-caja">
+          <table>
+            <thead>
+              <tr>
+                <th>Producto</th>
+                <th>Precio</th>
+                <th>Cantidad</th>
+                <th class="derecha">Subtotal</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="cuerpoCarrito"></tbody>
+          </table>
+        </div>
+
+        <div class="caja" style="max-width: 380px; margin: 22px 0 0 auto;">
+          <div class="cuerpo">
+            <div class="campo">
+              <label for="direccion">Direccion de entrega</label>
+              <select id="direccion">
+                <option value="">Seleccione</option>
+              </select>
+              <span class="error" id="errorDireccion"></span>
+            </div>
+            <div class="linea-barra">
+              <div class="texto"><span>Productos</span><strong id="totalProductos">$0</strong></div>
+              <div class="texto"><span>Envio</span><strong id="totalEnvio">$0</strong></div>
+              <div class="texto" style="font-size: 18px; border-top: 2px solid #dcdfe4; padding-top: 8px;">
+                <span>Total a pagar</span><strong id="totalPagar">$0</strong>
+              </div>
+            </div>
+            <button class="boton ancho" id="botonPagar">Pagar</button>
+          </div>
+        </div>
+      </section>
+
+      <p class="sin-stock" id="carritoVacio" style="display: none;">
+        Su carrito esta vacio. <a href="index.html">Ver el catalogo</a>.
+      </p>
+
+      <section id="boleta" style="display: none;">
+        <h2>Compra realizada</h2>
+        <div class="caja">
+          <div class="titulo" id="numeroBoleta"></div>
+          <div class="cuerpo" id="detalleBoleta"></div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="pie">
+    <div class="contenedor">
+
+      <div class="pie-columnas">
+        <div>
+          <h3>Nuestra empresa</h3>
+          <ul>
+            <li><a href="portal.html">Portal de gestion de proveedores</a></li>
+            <li><a href="registro.html">Quiero ser proveedor</a></li>
+            <li><a href="login.html">Ingresar al sistema</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Contacto</h3>
+          <ul>
+            <li>Casa matriz: Santiago Centro</li>
+            <li>proveedores@comprasegura.cl</li>
+            <li>+56 2 2345 6789</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pie-abajo">
+        CompraSegura 2026 - Proyecto academico Duoc UC
+      </div>
+
+    </div>
+  </footer>
+
+  <script src="js/datos.js"></script>
+  <script src="js/solicitudes.js"></script>
+  <script src="js/carrito-datos.js"></script>
+  <script src="js/sesion.js"></script>
+  <script src="js/carrito.js"></script>
+
+</body>
+
+</html>
