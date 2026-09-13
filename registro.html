@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CompraSegura - Registro</title>
+
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+  <header class="cabecera">
+    <div class="contenedor">
+
+      <a href="index.html" class="logo">
+        <img src="img/logo.png" alt="Logo de CompraSegura">
+        <span class="marca">Compra<span>Segura</span></span>
+      </a>
+
+      <button class="boton-menu" id="botonMenu">Menu</button>
+
+      <nav>
+        <ul class="menu" id="menu">
+            <li><a href="index.html">Catalogo</a></li>
+            <li><a href="carrito.html">Carrito (<span id="contadorCarrito">0</span>)</a></li>
+            <li><a href="portal.html">Nuestra empresa</a></li>
+            <li><span class="conectado" id="usuarioConectado"></span></li>
+            <li><a href="login.html" class="destacado" id="enlaceSesion">Ingresar</a></li>
+        </ul>
+      </nav>
+
+    </div>
+  </header>
+
+  <main>
+    <div class="contenedor">
+
+      <section class="caja">
+        <div class="titulo">Registro de proveedor</div>
+        <div class="cuerpo">
+
+          <div class="aviso" id="aviso"></div>
+
+          <form id="formulario" novalidate>
+
+            <p class="ayuda" style="margin-bottom: 18px;">
+              Este formulario es para empresas que quieren ser proveedoras de
+              CompraSegura. La cuenta queda pendiente hasta que el
+              administrador la apruebe.
+            </p>
+
+            <div class="dos-columnas">
+
+              <div class="campo">
+                <label for="rut">RUT</label>
+                <input type="text" id="rut" maxlength="9" autocomplete="off">
+                <small class="pista">Sin puntos ni guion. Ejemplo: 761234560</small>
+                <small class="error"></small>
+              </div>
+
+              <div class="campo">
+                <label for="nombre">Nombre o razon social</label>
+                <input type="text" id="nombre" maxlength="100" autocomplete="organization">
+                <small class="pista">Letras, numeros y puntos.</small>
+                <small class="error"></small>
+              </div>
+
+              <div class="campo">
+                <label for="correo">Correo</label>
+                <input type="email" id="correo" maxlength="100" list="dominios" autocomplete="email">
+                <small class="pista">Solo @duoc.cl, @profesor.duoc.cl o @gmail.com</small>
+                <small class="error"></small>
+              </div>
+
+              <div class="campo">
+                <label for="telefono">Telefono</label>
+                <input type="tel" id="telefono" maxlength="9" autocomplete="tel-national">
+                <small class="pista">Nueve digitos. Ejemplo: 912345678</small>
+                <small class="error"></small>
+              </div>
+
+              <div class="campo" id="campoCategoria">
+                <label for="categoria">Categoria que provee</label>
+                <select id="categoria">
+                  <option value="">Seleccione una categoria</option>
+                </select>
+                <small class="pista">Rubro principal de la empresa.</small>
+                <small class="error"></small>
+              </div>
+
+              <div class="campo" id="campoDias">
+                <label for="dias">Dias de entrega</label>
+                <input type="number" id="dias" min="1" max="60">
+                <small class="pista">Plazo habitual, entre 1 y 60 dias.</small>
+                <small class="error"></small>
+              </div>
+
+              <div class="campo">
+                <label for="region">Region</label>
+                <select id="region">
+                  <option value="">Seleccione una region</option>
+                </select>
+                <small class="pista">Al elegir region se cargan sus comunas.</small>
+                <small class="error"></small>
+              </div>
+
+              <div class="campo">
+                <label for="comuna">Comuna</label>
+                <select id="comuna">
+                  <option value="">Seleccione una comuna</option>
+                </select>
+                <small class="pista">Depende de la region elegida.</small>
+                <small class="error"></small>
+              </div>
+
+              <div class="campo completo">
+                <label for="direccion">Direccion</label>
+                <input type="text" id="direccion" maxlength="300" autocomplete="street-address">
+                <small class="pista">Calle y numero.</small>
+                <small class="error"></small>
+              </div>
+
+              <div class="campo">
+                <label for="clave">Contrasena</label>
+                <input type="password" id="clave" maxlength="10" autocomplete="new-password">
+                <small class="pista">Entre 8 y 10 caracteres.</small>
+                <small class="error"></small>
+              </div>
+
+              <div class="campo">
+                <label for="repetirClave">Repetir contrasena</label>
+                <input type="password" id="repetirClave" maxlength="10" autocomplete="new-password">
+                <small class="pista">Debe ser igual a la anterior.</small>
+                <small class="error"></small>
+              </div>
+
+            </div>
+
+            <button type="submit" class="boton ancho" id="botonRegistrar" disabled>
+              Enviar solicitud de registro
+            </button>
+          </form>
+
+        </div>
+      </section>
+
+      <datalist id="dominios">
+        <option value="@duoc.cl"></option>
+        <option value="@profesor.duoc.cl"></option>
+        <option value="@gmail.com"></option>
+      </datalist>
+
+    </div>
+  </main>
+
+  <footer class="pie">
+    <div class="contenedor">
+
+      <div class="pie-columnas">
+        <div>
+          <h3>Nuestra empresa</h3>
+          <ul>
+            <li><a href="portal.html">Portal de gestion de proveedores</a></li>
+            <li><a href="registro.html">Quiero ser proveedor</a></li>
+            <li><a href="login.html">Ingresar al sistema</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Contacto</h3>
+          <ul>
+            <li>Casa matriz: Santiago Centro</li>
+            <li>proveedores@comprasegura.cl</li>
+            <li>+56 2 2345 6789</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pie-abajo">
+        CompraSegura 2026 - Proyecto academico Duoc UC
+      </div>
+
+    </div>
+  </footer>
+
+  <script src="js/datos.js"></script>
+  <script src="js/carrito-datos.js"></script>
+  <script src="js/sesion.js"></script>
+  <script src="js/regiones.js"></script>
+  <script src="js/validaciones.js"></script>
+  <script src="js/registro.js"></script>
+
+</body>
+
+</html>

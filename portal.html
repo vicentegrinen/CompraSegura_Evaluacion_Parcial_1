@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CompraSegura - Portal de proveedores</title>
+
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+  <header class="cabecera">
+    <div class="contenedor">
+
+      <a href="index.html" class="logo">
+        <img src="img/logo.png" alt="Logo de CompraSegura">
+        <span class="marca">Compra<span>Segura</span></span>
+      </a>
+
+      <button class="boton-menu" id="botonMenu">Menu</button>
+
+      <nav>
+        <ul class="menu" id="menu">
+            <li><a href="index.html">Catalogo</a></li>
+            <li><a href="carrito.html">Carrito (<span id="contadorCarrito">0</span>)</a></li>
+            <li><a href="portal.html" class="activo">Nuestra empresa</a></li>
+            <li><span class="conectado" id="usuarioConectado"></span></li>
+            <li><a href="login.html" class="destacado" id="enlaceSesion">Ingresar</a></li>
+        </ul>
+      </nav>
+
+    </div>
+  </header>
+
+  <main>
+    <div class="contenedor">
+
+      <h1>Portal de gestion de proveedores</h1>
+      <p class="bajada">
+        Espacio de trabajo de las empresas proveedoras y del equipo de
+        compras de CompraSegura.
+      </p>
+
+      <section class="accesos">
+
+        <article class="acceso">
+          <h2>Soy proveedor nuevo</h2>
+          <p>
+            Registre su empresa para postular como proveedor. Su solicitud
+            queda pendiente hasta que el administrador la revise.
+          </p>
+          <a href="registro.html" class="boton naranja">Crear registro de proveedor</a>
+        </article>
+
+        <article class="acceso">
+          <h2>Ya tengo cuenta</h2>
+          <p>
+            Ingrese con su correo y contrasena. El sistema lo lleva a su
+            vista segun sea proveedor, analista o administrador.
+          </p>
+          <a href="login.html" class="boton">Iniciar sesion</a>
+        </article>
+
+      </section>
+
+      <section>
+        <h2>Que puede hacer cada perfil</h2>
+        <div class="tabla-caja">
+          <table>
+            <thead>
+              <tr>
+                <th>Perfil</th>
+                <th>Que ve al entrar</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Proveedor</strong></td>
+                <td>Sus solicitudes de compra, el stock que tiene de cada producto y el avance de cada entrega.</td>
+              </tr>
+              <tr>
+                <td><strong>Analista</strong></td>
+                <td>El resumen con la nota de cada proveedor y el detalle entrega por entrega.</td>
+              </tr>
+              <tr>
+                <td><strong>Administrador</strong></td>
+                <td>Reportes de compras, gasto por categoria, presupuesto y las decisiones sobre cada proveedor.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="pie">
+    <div class="contenedor">
+
+      <div class="pie-columnas">
+        <div>
+          <h3>Nuestra empresa</h3>
+          <ul>
+            <li><a href="portal.html">Portal de gestion de proveedores</a></li>
+            <li><a href="registro.html">Quiero ser proveedor</a></li>
+            <li><a href="login.html">Ingresar al sistema</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Contacto</h3>
+          <ul>
+            <li>Casa matriz: Santiago Centro</li>
+            <li>proveedores@comprasegura.cl</li>
+            <li>+56 2 2345 6789</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pie-abajo">
+        CompraSegura 2026 - Proyecto academico Duoc UC
+      </div>
+
+    </div>
+  </footer>
+
+  <script src="js/datos.js"></script>
+  <script src="js/carrito-datos.js"></script>
+  <script src="js/sesion.js"></script>
+
+</body>
+
+</html>
