@@ -5,9 +5,59 @@
   <meta charset="UTF-8">
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CompraSegura - Catalogo</title>
+  <title>CompraSegura - Inicio</title>
 
   <link rel="stylesheet" href="css/styles.css">
+
+  <!--
+    Estilos propios de esta pagina: solo lo que no existe todavia en
+    css/styles.css (el listado de categorias con foto circular). Todo
+    lo demas (h1, .bajada, .accesos, .acceso, .boton, .caja-video)
+    reutiliza tal cual los componentes y variables de color/tipografia
+    ya definidos, para que se vea igual que portal.html.
+  -->
+  <style>
+    .categorias h2 {
+      text-align: center;
+    }
+
+    .lista-categorias {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 18px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .categoria a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      width: 92px;
+      text-align: center;
+      font-size: 13px;
+      color: var(--texto);
+    }
+
+    .categoria img {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1px solid var(--borde);
+    }
+
+    .categoria a:hover img {
+      border-color: var(--naranja);
+    }
+
+    .acceso p strong {
+      color: var(--azul);
+    }
+  </style>
 </head>
 
 <body>
@@ -24,11 +74,11 @@
 
       <nav>
         <ul class="menu" id="menu">
-            <li><a href="index.html" class="activo">Catalogo</a></li>
-            <li><a href="carrito.html">Carrito (<span id="contadorCarrito">0</span>)</a></li>
-            <li><a href="portal.html">Nuestra empresa</a></li>
-            <li><span class="conectado" id="usuarioConectado"></span></li>
-            <li><a href="login.html" class="destacado" id="enlaceSesion">Ingresar</a></li>
+          <li><a href="catalogo.html">Catalogo</a></li>
+          <li><a href="carrito.html">Carrito (<span id="contadorCarrito">0</span>)</a></li>
+          <li><a href="portal.html">Afiliados</a></li>
+          <li><span class="conectado" id="usuarioConectado"></span></li>
+          <li><a href="login.html" class="destacado" id="enlaceSesion">Ingresar</a></li>
         </ul>
       </nav>
 
@@ -38,31 +88,95 @@
   <main>
     <div class="contenedor">
 
-      <h1>Catalogo de productos</h1>
+      <h1>CompraSegura</h1>
       <p class="bajada">
-        Productos para el hogar y la construccion de nuestros proveedores.
+        Materiales de construccion y ferreteria para tu obra o tu casa.
       </p>
 
-      <div class="filtro campo">
-        <label for="filtroCategoria">Filtrar por categoria</label>
-        <select id="filtroCategoria">
-          <option value="">Todas las categorias</option>
-        </select>
-      </div>
+      <section class="accesos">
 
-      <section>
-        <h2>Productos (<span id="contadorProductos">0</span>)</h2>
+        <article class="acceso">
+          <h2>Catalogo completo</h2>
+          <p>
+            Materiales de construccion, herramientas, pinturas, materiales
+            electricos y ferreteria, todo en un mismo lugar.
+          </p>
+          <a href="catalogo.html" class="boton naranja">Ver catalogo</a>
+        </article>
 
-        <div class="grilla" id="grilla"></div>
+        <article class="acceso">
+          <h2>Compra protegida</h2>
+          <p>
+            Medios de pago aceptados y despacho a todo el pais en 24-48
+            horas.
+          </p>
+          <a href="portal.html" class="boton">Conocer mas</a>
+        </article>
+
       </section>
 
-      <section>
-        <h2>Conoce CompraSegura</h2>
-        <div class="caja-video">
+      <section class="categorias">
+        <h2>Categorias</h2>
 
+        <ul class="lista-categorias">
+          <li class="categoria">
+            <a href="catalogo.html">
+              <img src="img/prod-cemento.jpg" alt="Materiales de construccion">
+              <span>Mats. Construccion</span>
+            </a>
+          </li>
+          <li class="categoria">
+            <a href="catalogo.html">
+              <img src="img/prod-taladro.jpg" alt="Herramientas">
+              <span>Herramientas</span>
+            </a>
+          </li>
+          <li class="categoria">
+            <a href="catalogo.html">
+              <img src="img/prod-latex.jpg" alt="Pinturas">
+              <span>Pinturas</span>
+            </a>
+          </li>
+          <li class="categoria">
+            <a href="catalogo.html">
+              <img src="img/prod-cable.jpg" alt="Materiales electricos">
+              <span>Mats. electricos</span>
+            </a>
+          </li>
+          <li class="categoria">
+            <a href="catalogo.html">
+              <img src="img/prod-tornillos.jpg" alt="Ferreteria">
+              <span>Ferreteria</span>
+            </a>
+          </li>
+        </ul>
+      </section>
+
+      <section class="beneficios">
+        <h2>Beneficios</h2>
+
+        <div class="accesos">
+          <div class="acceso">
+            <p><strong>Despacho rapido.</strong> A todo el pais en 24-48 horas.</p>
+          </div>
+          <div class="acceso">
+            <p><strong>Garantia asegurada.</strong> Productos con respaldo de fabrica.</p>
+          </div>
+          <div class="acceso">
+            <p><strong>Atencion personalizada.</strong> Asesoria tecnica para tu proyecto.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="sobre-nosotros">
+        <h2>Sobre Nosotros</h2>
+        <!-- Placeholder: falta la bajada/descripcion de la empresa -->
+        <p>Contenido pendiente: breve historia y propuesta de valor de CompraSegura.</p>
+
+        <div class="caja-video">
           <video controls poster="img/video-portada.jpg">
             <source src="img/video-institucional.mp4" type="video/mp4">
-            Su navegador no puede reproducir este video.
+            Tu navegador no soporta la reproduccion de video.
           </video>
         </div>
       </section>
@@ -74,26 +188,45 @@
     <div class="contenedor">
 
       <div class="pie-columnas">
+        <div class="pie-marca">
+          <h3>CompraSegura</h3>
+          <p>Materiales de construccion y ferreteria para tu obra o tu casa.</p>
+          <p>Medios de pago aceptados · Compra protegida</p>
+        </div>
+
         <div>
-          <h3>Nuestra empresa</h3>
+          <h3>Categorias</h3>
           <ul>
-            <li><a href="portal.html">Portal de gestion de proveedores</a></li>
-            <li><a href="registro.html">Quiero ser proveedor</a></li>
-            <li><a href="login.html">Ingresar al sistema</a></li>
+            <li><a href="catalogo.html">Mats. Construccion</a></li>
+            <li><a href="catalogo.html">Herramientas</a></li>
+            <li><a href="catalogo.html">Pinturas</a></li>
+            <li><a href="catalogo.html">Mats electricos</a></li>
+            <li><a href="catalogo.html">Ferreteria</a></li>
           </ul>
         </div>
+
+        <div>
+          <h3>Ayuda</h3>
+          <ul>
+            <li><a href="index.html">Seguimiento de pedido</a></li>
+            <li><a href="index.html">Cambios y devoluciones</a></li>
+            <li><a href="index.html">Preguntas frecuentes</a></li>
+            <li><a href="index.html">Politicas de despacho</a></li>
+          </ul>
+        </div>
+
         <div>
           <h3>Contacto</h3>
           <ul>
-            <li>Casa matriz: Santiago Centro</li>
-            <li>proveedores@comprasegura.cl</li>
-            <li>+56 2 2345 6789</li>
+            <li>+56 9 XXXX XXXX</li>
+            <li>contacto@comprasegura.cl</li>
+            <li>Lun a sab, 08:00-19:00</li>
           </ul>
         </div>
       </div>
 
       <div class="pie-abajo">
-        
+        CompraSegura 2026 - Proyecto academico Duoc UC
       </div>
 
     </div>
@@ -102,7 +235,6 @@
   <script src="js/datos.js"></script>
   <script src="js/carrito-datos.js"></script>
   <script src="js/sesion.js"></script>
-  <script src="js/catalogo.js"></script>
 
 </body>
 
