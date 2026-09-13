@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CompraSegura - Catalogo</title>
+
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+  <header class="cabecera">
+    <div class="contenedor">
+
+      <a href="index.html" class="logo">
+        <img src="img/logo.png" alt="Logo de CompraSegura">
+        <span class="marca">Compra<span>Segura</span></span>
+      </a>
+
+      <button class="boton-menu" id="botonMenu">Menu</button>
+
+      <nav>
+        <ul class="menu" id="menu">
+            <li><a href="catalogo.html" class="activo">Catalogo</a></li>
+            <li><a href="carrito.html">Carrito (<span id="contadorCarrito">0</span>)</a></li>
+            <li><a href="portal.html">Nuestra empresa</a></li>
+            <li><span class="conectado" id="usuarioConectado"></span></li>
+            <li><a href="login.html" class="destacado" id="enlaceSesion">Ingresar</a></li>
+        </ul>
+      </nav>
+
+    </div>
+  </header>
+
+  <main>
+    <div class="contenedor">
+
+      <h1>Catalogo de productos</h1>
+      <p class="bajada">
+        Productos para el hogar y la construccion de nuestros proveedores.
+      </p>
+
+      <div class="filtro campo">
+        <label for="filtroCategoria">Filtrar por categoria</label>
+        <select id="filtroCategoria">
+          <option value="">Todas las categorias</option>
+        </select>
+      </div>
+
+      <section>
+        <h2>Productos (<span id="contadorProductos">0</span>)</h2>
+
+        <div class="grilla" id="grilla"></div>
+      </section>
+
+      <section>
+        <h2>Conoce CompraSegura</h2>
+        <div class="caja-video">
+
+          <video controls poster="img/video-portada.jpg">
+            <source src="img/video-institucional.mp4" type="video/mp4">
+            Su navegador no puede reproducir este video.
+          </video>
+        </div>
+      </section>
+
+    </div>
+  
+      <div class="modal-fondo" id="modalLogin" hidden>
+        <section class="caja modal-caja">
+          <button type="button" class="modal-cerrar" id="modalLoginCerrar" aria-label="Cerrar">&times;</button>
+          <div class="titulo">Ingresar al sistema</div>
+          <div class="cuerpo">
+
+            <div class="aviso malo" id="modalLoginAviso"></div>
+
+            <form id="modalLoginFormulario" novalidate>
+
+              <div class="campo">
+                <label for="modalLoginCorreo">Correo</label>
+                <input type="email" id="modalLoginCorreo" maxlength="100" autocomplete="email">
+                <small class="pista">Solo @duoc.cl, @profesor.duoc.cl o @gmail.com</small>
+                <small class="error"></small>
+              </div>
+
+              <div class="campo">
+                <label for="modalLoginClave">Contrasena</label>
+                <input type="password" id="modalLoginClave" maxlength="10" autocomplete="current-password">
+                <small class="pista">Entre 4 y 10 caracteres.</small>
+                <small class="error"></small>
+              </div>
+
+              <button type="submit" class="boton ancho" id="modalLoginBotonIngresar" disabled>Ingresar</button>
+            </form>
+
+          </div>
+        </section>
+      </div>
+
+  </main>
+
+  <footer class="pie">
+    <div class="contenedor">
+
+      <div class="pie-columnas">
+        <div>
+          <h3>Nuestra empresa</h3>
+          <ul>
+            <li><a href="portal.html">Portal de gestion de proveedores</a></li>
+            <li><a href="registro.html">Quiero ser proveedor</a></li>
+            <li><a href="login.html" id="enlaceLoginPie">Ingresar al sistema</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Contacto</h3>
+          <ul>
+            <li>Casa matriz: Santiago Centro</li>
+            <li>proveedores@comprasegura.cl</li>
+            <li>+56 2 2345 6789</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pie-abajo">
+        CompraSegura 2026 - Proyecto academico Duoc UC
+      </div>
+
+    </div>
+  </footer>
+
+  <script src="js/datos.js"></script>
+  <script src="js/carrito-datos.js"></script>
+  <script src="js/sesion.js"></script>
+  <script src="js/validaciones.js"></script>
+  <script src="js/modal-login.js"></script>
+  <script src="js/catalogo.js"></script>
+
+</body>
+
+</html>
