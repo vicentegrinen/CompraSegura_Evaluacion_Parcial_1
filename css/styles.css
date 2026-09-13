@@ -705,3 +705,96 @@ tr:last-child td {
 .estado.enviada { background: #fdf3e0; color: var(--amarillo); }
 .estado.recibida { background: #e6f4ec; color: var(--verde); }
 .estado.cerrada { background: #e4e7ea; color: #47505c; }
+
+.modal-fondo {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-fondo[hidden] {
+  display: none;
+}
+
+.modal-caja {
+  position: relative;
+  width: min(90%, 400px);
+  max-height: 90vh;
+  overflow-y: auto;
+  background: #000000;
+}
+
+.modal-caja .cuerpo {
+  color: #ffffff;
+}
+
+.modal-caja .campo label {
+  color: #ffffff;
+}
+
+.modal-caja .campo .pista {
+  color: #c7c9cc;
+}
+
+.modal-caja .ayuda {
+  color: #c7c9cc;
+}
+
+.modal-caja .campo input,
+.modal-caja .campo select {
+  color: var(--texto);
+}
+
+.modal-caja .modal-cerrar {
+  color: #ffffff;
+}
+
+.modal-caja.ancha {
+  width: min(92%, 620px);
+}
+
+.modal-cerrar {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.fuerza-clave {
+  margin-top: 8px;
+  height: 6px;
+  border-radius: 4px;
+  background: var(--borde);
+  overflow: hidden;
+}
+
+.fuerza-clave-barra {
+  height: 100%;
+  width: 0%;
+  border-radius: 4px;
+  background: var(--borde);
+  transition: width 0.2s ease, background-color 0.2s ease;
+}
+
+.fuerza-clave-barra.debil { background: var(--rojo); }
+.fuerza-clave-barra.media { background: var(--amarillo); }
+.fuerza-clave-barra.fuerte { background: var(--verde); }
+
+.fuerza-texto {
+  display: block;
+  font-size: 12px;
+  margin-top: 4px;
+  min-height: 15px;
+}
+
+.fuerza-texto.debil { color: var(--rojo); }
+.fuerza-texto.media { color: var(--amarillo); }
+.fuerza-texto.fuerte { color: var(--verde); }
