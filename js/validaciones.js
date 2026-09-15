@@ -1,5 +1,3 @@
-const DOMINIOS = ["@duoc.cl", "@profesor.duoc.cl", "@gmail.com"];
-
 function digitoCorrecto(rut) {
   const cuerpo = rut.slice(0, -1);
   const entregado = rut.slice(-1);
@@ -64,8 +62,12 @@ function validarCorreo(valor) {
   if (antes.includes("..")) { return "No puede haber dos puntos seguidos."; }
   if (!/^[a-z0-9._-]+$/.test(antes)) { return "Antes del arroba solo letras, numeros, punto y guion."; }
 
-  const permitido = DOMINIOS.some(function (d) { return correo.endsWith(d); });
-  if (!permitido) { return "Solo se aceptan @duoc.cl, @profesor.duoc.cl o @gmail.com."; }
+  const despues = partes[1];
+  if (despues === "") { return "Falta el dominio despues del arroba."; }
+  if (despues.startsWith("-") || despues.endsWith("-")) { return "El dominio no puede empezar ni terminar en guion."; }
+  if (!/^[a-z0-9-]+(\.[a-z0-9-]+)*\.[a-z]{2,}$/.test(despues)) {
+    return "El dominio no es valido, por ejemplo empresa.cl.";
+  }
 
   return "";
 }

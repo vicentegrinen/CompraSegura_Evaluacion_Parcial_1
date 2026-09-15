@@ -798,3 +798,12 @@ tr:last-child td {
 .fuerza-texto.debil { color: var(--rojo); }
 .fuerza-texto.media { color: var(--amarillo); }
 .fuerza-texto.fuerte { color: var(--verde); }
+
+.texto-empresa {
+  max-width: 680px;
+  margin-bottom: 24px;
+}
+
+.texto-empresa p {
+  margin-bottom: 14px;
+}
