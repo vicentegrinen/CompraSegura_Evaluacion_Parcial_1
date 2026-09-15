@@ -172,16 +172,20 @@ function conectarTelefonoFijo(idInput) {
 function calcularFuerzaClave(valor) {
   if (valor === "") { return { nivel: "", texto: "", porcentaje: 0 }; }
 
-  let puntos = 0;
-  if (valor.length >= 8) { puntos++; }
-  if (/[A-Z]/.test(valor)) { puntos++; }
-  if (/[a-z]/.test(valor)) { puntos++; }
-  if (/[0-9]/.test(valor)) { puntos++; }
-  if (/[^A-Za-z0-9]/.test(valor)) { puntos++; }
+  const largoOk = valor.length >= 8 && valor.length <= 10;
+  const mayuscula = /[A-Z]/.test(valor);
+  const minuscula = /[a-z]/.test(valor);
+  const numero = /[0-9]/.test(valor);
 
-  if (puntos <= 2) { return { nivel: "debil", texto: "Contrasena debil", porcentaje: 33 }; }
-  if (puntos <= 3) { return { nivel: "media", texto: "Contrasena media", porcentaje: 66 }; }
-  return { nivel: "fuerte", texto: "Contrasena fuerte", porcentaje: 100 };
+  let puntos = 0;
+  if (largoOk) { puntos++; }
+  if (mayuscula) { puntos++; }
+  if (minuscula) { puntos++; }
+  if (numero) { puntos++; }
+
+  if (puntos === 4) { return { nivel: "fuerte", texto: "Contrasena fuerte", porcentaje: 100 }; }
+  if (puntos === 3) { return { nivel: "media", texto: "Contrasena media", porcentaje: 66 }; }
+  return { nivel: "debil", texto: "Contrasena debil", porcentaje: 33 };
 }
 
 function conectarFuerzaClave(idClave, idBarra, idTexto) {
@@ -249,6 +253,14 @@ function conectar(idFormulario, reglas, idBoton) {
     ["input", "change"].forEach(function (evento) {
       entrada.addEventListener(evento, function () {
         pintar(id, reglas[id](entrada.value, entrada));
+
+        for (const otroId in reglas) {
+          const otra = document.getElementById(otroId);
+          if (otra && otra.dataset.comparar === id && otra.value !== "") {
+            pintar(otroId, reglas[otroId](otra.value, otra));
+          }
+        }
+
         revisar(false);
       });
     });
